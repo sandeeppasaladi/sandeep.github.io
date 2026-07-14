@@ -1,0 +1,43 @@
+import java.sql.*;
+class Demo Transaction
+{
+public static void main(String[]args)
+{
+try
+{
+Class.forName("oracle.jdbc.driver OracleDriver");
+string url = "jdbc:mysql://local host:3306/ajdb";
+string username = "root";
+string password = " ";
+connection con = DriverManager.getconnection(url,username,password);
+statement stmt = con.createstatment();
+con.setAutocommit(false);
+try
+{
+int i1 = stmt.execute update("insert into student values ('1220','Rama','ELURU)'');
+int i2 = stmt.execute update("update student set address = 'Hyderabad'where roll='1212''');
+int i3 = stmt.execute update("delete from student where roll = '1211''');
+con.commit();
+system.out.println("Transaction is success");
+}
+catch(Excepton e)
+{
+try
+{
+con.rollback();
+system.out.println("Transaction is failed");
+}
+catch(Exception ex)
+{
+system.out.println(ex);
+}
+}
+stmt.close();
+con.close();
+system.out.println("Connection is closed");
+}
+catch(Exception e)
+{
+system.ot.println(e);
+}
+}
